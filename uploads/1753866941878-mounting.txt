@@ -1,0 +1,186 @@
+What is Lifecycle in React?
+The lifecycle of a component means how a component is created, updated, and removed from the screen.
+React gives us special methods (called lifecycle methods) 
+
+import React from "react";
+
+class LifecycleExample extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+    console.log("Constructor: Component is being created");
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log("getDerivedStateFromProps: Sync props to state if needed");
+    return null;
+  }
+
+  componentDidMount() {
+    console.log("componentDidMount: Component mounted (DOM ready)");
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("shouldComponentUpdate: Should component re-render?");
+    return true;
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log("getSnapshotBeforeUpdate: Snapshot before update");
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log("componentDidUpdate: Component updated");
+  }
+
+  componentWillUnmount() {
+    console.log("componentWillUnmount: Component will be removed from DOM");
+  }
+
+  increase = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  render() {
+    console.log("Render: Rendering the UI");
+    return (
+      <div>
+        <h2>React Lifecycle Example</h2>
+        <p>Count: {this.state.count}</p>
+        <button onClick={this.increase}>Increase</button>
+      </div>
+    );
+  }
+}
+
+export default LifecycleExample;
+=========================================================================================
+🔹 Lifecycle Phases Summary:
+1. Mounting Phase (when component is created)
+constructor()
+
+getDerivedStateFromProps()
+
+render()
+
+componentDidMount()
+
+2. Updating Phase (on state/props change)
+getDerivedStateFromProps()
+
+shouldComponentUpdate()
+
+render()
+
+getSnapshotBeforeUpdate()
+componentDidUpdate()
+
+3. Unmounting Phase (component removed)
+componentWillUnmount()
+
+==================================================
+class LifecycleExample extends React.Component {
+We are creating a class component called LifecycleExample. It extends React.Component, which gives us access to lifecycle methods.
+
+constructor(props) {
+  super(props);
+  this.state = { count: 0 };
+  console.log("Constructor: Component is being created");
+}
+-------------------------------------------------------
+Called first when component is created.
+
+We define state here with a count set to 0.
+
+console.log() just shows a message in the browser console for us to track what's happening.
+----------------------------------------------------------------------------------------
+2. getDerivedStateFromProps()
+
+static getDerivedStateFromProps(props, state) {
+  console.log("getDerivedStateFromProps: Sync props to state if needed");
+  return null;
+}
+Rarely used. Called before render, used when you want to update state based on props.
+
+We just log a message here.
+
+🔹 3. render()
+render() {
+  console.log("Render: Rendering the UI");
+  return (
+    <div>
+      <h2>React Lifecycle Example</h2>
+      <p>Count: {this.state.count}</p>
+      <button onClick={this.increase}>Increase</button>
+    </div>
+  );
+}
+
+Always required.
+
+Returns the HTML that you want to show on the screen.
+
+Displays the count and a button to increase it.
+
+🔹 4. componentDidMount()
+
+componentDidMount() {
+  console.log("componentDidMount: Component mounted (DOM ready)");
+}
+
+Called after the UI is shown on screen.
+
+Good place to fetch data from API or set up timers, etc.
+
+🔹 5. shouldComponentUpdate()
+shouldComponentUpdate(nextProps, nextState) {
+  console.log("shouldComponentUpdate: Should component re-render?");
+  return true;
+}
+
+React asks: Should I re-render the component?
+
+If true, then it re-renders. If false, it skips.
+
+We return true to always allow updates.
+
+🔹 6. getSnapshotBeforeUpdate()
+
+getSnapshotBeforeUpdate(prevProps, prevState) {
+  console.log("getSnapshotBeforeUpdate: Snapshot before update");
+  return null;
+}
+
+Rarely used.
+
+Called right before the UI is updated.
+
+Can capture things like scroll position before update.
+🔹 7. componentDidUpdate()
+
+componentDidUpdate(prevProps, prevState, snapshot) {
+  console.log("componentDidUpdate: Component updated");
+}
+
+Called after the component is updated.
+
+You can react to changes here.
+🔹 8. componentWillUnmount()
+componentWillUnmount() {
+  console.log("componentWillUnmount: Component will be removed from DOM");
+}
+
+Called before the component is removed from the screen.
+
+Useful to clear timers, listeners, or cancel API requests.
+
+increase = () => {
+  this.setState({ count: this.state.count + 1 });
+};
+Updates the count when you click the button.
+
+Triggers re-render and update lifecycle methods.
+
+
+

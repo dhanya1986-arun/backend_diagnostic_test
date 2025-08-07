@@ -1,0 +1,14 @@
+Dr. Anil Kumar
+General Physician
+
+Date: 19 July 2025
+
+Patient Name: test2
+Age: 42
+
+Prescription:
+- Paracetamol 500mg - 1 tablet after food (morning and night)
+- Vitamin D3 - once a day after lunch
+-  Test: X-ray
+
+Next Visit: After 7 Days
