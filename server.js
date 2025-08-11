@@ -19,18 +19,19 @@ mongoose.connect(process.env.MONGO_URI, {dbName : "diagnostic_test"}
 .then(() => console.log("MongoDB connected"))
 .catch((err) => console.error("MongoDB error:", err));
 app.use(cors({
-    origin: 'http://localhost:3000', // frontend URL
+    origin:  [
+      "https://diagnostic-test-frontendcode.vercel.app",
+    "http://localhost:3000"
+    
+  ],
+     // frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
 app.use(express.json());
 // Routes
-app.use(cors({
-    origin: 'http://localhost:3000', // frontend URL
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
-}));
-app.use(express.json());
+
+
 
 const authRoutes= require('./routes/authroutes');
 const orderRoutes = require('./routes/orderRoutes')
