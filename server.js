@@ -31,11 +31,9 @@ app.use(cors({
 app.use(express.json());
 // Routes
 
-<<<<<<< HEAD
 
-=======
 app.use(express.json());
->>>>>>> 28b08b1a71f4604147a6c9b70580efceacbcbb26
+
 
 const authRoutes= require('./routes/authroutes');
 const orderRoutes = require('./routes/orderRoutes')
