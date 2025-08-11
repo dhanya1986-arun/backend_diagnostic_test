@@ -18,7 +18,12 @@ mongoose.connect(process.env.MONGO_URI, {dbName : "diagnostic_test"}
   )
 .then(() => console.log("MongoDB connected"))
 .catch((err) => console.error("MongoDB error:", err));
-
+app.use(cors({
+    origin: 'http://localhost:3000', // frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
+app.use(express.json());
 // Routes
 app.use(cors({
     origin: 'http://localhost:3000', // frontend URL
